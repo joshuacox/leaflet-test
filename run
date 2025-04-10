@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+: ${LEAFLET_PORT:=1345}
+
+if [[ -f .cid ]]; then
+  docker stop `cat .cid`
+  docker rm   `cat .cid`
+  rm .cid
+fi
+
+docker run \
+  -p ${LEAFLET_PORT}:80 \
+  --restart=unless-stopped \
+  --cidfile .cid \
+  --name LEAFLET-TEST \
+  -v $(pwd):/usr/share/nginx/html:ro \
+  -d nginx:alpine
