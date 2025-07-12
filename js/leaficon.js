@@ -1,5 +1,6 @@
 
 var fuck = 'fuck';
+import L, { Map, TileLayer, Marker, Icon } from 'leaflet';
 
 const LeafIcon = Icon.extend({
   options: {
